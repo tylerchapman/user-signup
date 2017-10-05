@@ -4,20 +4,25 @@
     <title>User Sign Up</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css')}}">
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
   </head>
   <body>
     <h1>User Signup</h1>
     <p>by: tyler chapman</p>
-    <form>
+    <form action="/welcome" method="post">
       <label>Username:</label>
-      <input type="text" name="username" required><br>
+        <input type="text" name="username" value="{% if username %}{{ username }}{% endif %}" required><span class="error">{% if username_error %}{{ username_error_message }}{% endif %}</span><br>
       <label>Password:</label>
-      <input type="password" name="password" required><br>
+        <input type="password" name="password" required><span class="error">{% if password_error %}{{ password_error_message }}{% endif %}</span><br>
       <label>Verify Password:</label>
-      <input type="password" name="verify-password" required><br>
+        <input type="password" name="verify-password" required><span class="error">{% if matching_error %}{{ matching_password_error_message }}{% endif %}</span><br>
       <label>Email:</label>
-      <input type="email" name="email"><br>
-      <input type="submit" name="submit">
+        <input type="email" name="email"><br>
+        <input type="submit" name="submit">
     </form>
   </body>
 </html>
